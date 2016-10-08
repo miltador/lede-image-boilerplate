@@ -7,18 +7,17 @@
 # TODO list:
 #   1. Add variables.
 
-cd /tmp/
-rm -r image-builder/
+rm -r /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 
 # Download Image Builder
-wget -O image-builder.tar.bz2 https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.bz2
-
-mkdir image-builder
+wget -O /tmp/image-builder.tar.bz2 https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.bz2
 
 # Extract the archive
-tar -xf image-builder.tar.bz2
+tar -xf image-builder.tar.bz2 -C /tmp/
 
-cd ./lede-imagebuilder-ar71xx-generic.Linux-x86_64
+cp -r files/ /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
+
+cd /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 
 # Preparation
 sudo apt-get install build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget -y
