@@ -30,7 +30,7 @@ RAND_STRING="$(openssl rand -hex 5)"
 HASH="$(openssl passwd -1 -salt $RAND_STRING $CLEAR_PASS)"
 
 # Write hash to file
-sed -i -- "s/root::0:0:99999:7:::/root:$HASH:17082:0:99999:7:::/g" "files/etc/shadow"
+sed -i -- "s/root::0:0:99999:7:::/root:$(echo $HASH | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g'):17082:0:99999:7:::/g" "files/etc/shadow"
 
 # Ask for a Wi-Fi password
 read -p "Enter your own Wi-Fi password: " WIFI_PASS
