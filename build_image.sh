@@ -8,6 +8,7 @@
 #   1. Add variables.
 
 cd /tmp/
+rm -r image-builder/
 
 # Download Image Builder
 wget -O image-builder.tar.bz2 https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.bz2
