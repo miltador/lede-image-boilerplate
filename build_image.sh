@@ -38,15 +38,5 @@ read -p "Enter your own Wi-Fi password: " WIFI_PASS
 # Write Wi-Fi password to file
 sed -i -- "s/OWN_WIFI_PASS_PLACEHOLDER/$WIFI_PASS/g" "files/etc/config/wireless"
 
-# Ask for a DDNS settings
-read -p "DDNS host: " DDNS_HOST
-read -p "DNS-O-Matic username: " DNSOMATIC_USER
-read -p "DNS-O-Matic password: " DNSOMATIC_PASS
-
-# Write DDNS settings
-sed -i -- "s/DDNS_HOST_PLACEHOLDER/$DDNS_HOST/g" "files/etc/config/ddns"
-sed -i -- "s/DNSOMATIC_USER_PLACEHOLDER/$DNSOMATIC_USER/g" "files/etc/config/ddns"
-sed -i -- "s/DNSOMATIC_PASS_PLACEHOLDER/$DNSOMATIC_PASS/g" "files/etc/config/ddns"
-
 # Make image
-make image PROFILE=tl-wr842n-v1 PACKAGES="luci-ssl-openssl luci-app-ddns luci-app-upnp nano wget ca-certificates" FILES=files/
+make image PROFILE=tl-wr842n-v1 PACKAGES="luci-ssl-openssl luci-app-upnp" FILES=files/
