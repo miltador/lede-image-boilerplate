@@ -14,13 +14,6 @@ config zone
 	option forward		ACCEPT
 
 config zone
-	option name 		guest
-	list   network 		'guest'
-	option input 		REJECT
-	option forward 		REJECT
-	option output 		ACCEPT
-
-config zone
 	option name		wan
 	list   network		'wan'
 	list   network		'wan6'
@@ -33,11 +26,6 @@ config zone
 config forwarding
 	option src		lan
 	option dest		wan
-
-# Allow Guest -> Internet
-config forwarding
-	option src 		guest
-	option dest 		wan
 
 # We need to accept udp packets on port 68,
 # see https://dev.openwrt.org/ticket/4108
@@ -126,94 +114,6 @@ config rule
 	option family		ipv6
 	option target		ACCEPT
 
-# Allow DNS Guest -> Router
-# Client DNS queries ordinate from dynamic UDP ports (>1023) 
-config rule
-	option name 		'Allow DNS Queries'
-	option src 		guest
-	option dest_port 	53
-	option proto 		tcpudp
-	option target 		ACCEPT
-
-# Allow DHCP Guest -> Router
-# DHCP communication uses UDP ports 67-68
-config rule
-	option name 		'Allow DHCP request'
-	option src 		guest
-	option src_port 	67-68
-	option dest_port 	67-68
-	option proto 		udp
-	option target 		ACCEPT
-
-# Allow HTTP Guest -> WAN
-config rule                                     
-	option target 		ACCEPT                  
-	option src		guest 
-	option dest 		wan                       
-	option name 		'Allow Guest -> WAN http'      
-	option proto 		tcp                      
-	option dest_port 	80
-
-# Allow HTTPS Guest -> WAN
-config rule                                 
-	option target 		ACCEPT              
-	option src 		guest                  
-	option dest 		wan                      
-	option name 		'Allow Guest -> WAN https'  
-	option proto		tcp                  
-	option dest_port 	443
-
-# Deny Everything_else Guest -> WAN
-config rule            
-	option src 		guest                      
-	option dest 		wan                       
-	option name 		'Deny Guest -> WAN' 
-	option proto 		all                  
-	option target 		DROP
-
-# include a file with users custom iptables rules
-config include
-	option path /etc/firewall.user
-
-
-### EXAMPLE CONFIG SECTIONS
-# do not allow a specific ip to access wan
-#config rule
-#	option src		lan
-#	option src_ip	192.168.45.2
-#	option dest		wan
-#	option proto	tcp
-#	option target	REJECT
-
-# block a specific mac on wan
-#config rule
-#	option dest		wan
-#	option src_mac	00:11:22:33:44:66
-#	option target	REJECT
-
-# block incoming ICMP traffic on a zone
-#config rule
-#	option src		lan
-#	option proto	ICMP
-#	option target	DROP
-
-# port redirect port coming in on wan to lan
-#config redirect
-#	option src			wan
-#	option src_dport	80
-#	option dest			lan
-#	option dest_ip		192.168.16.235
-#	option dest_port	80
-#	option proto		tcp
-
-# port redirect of remapped ssh port (22001) on wan
-#config redirect
-#	option src		wan
-#	option src_dport	22001
-#	option dest		lan
-#	option dest_port	22
-#	option proto		tcp
-
 # allow IPsec/ESP and ISAKMP passthrough
 config rule
 	option src		wan
@@ -228,24 +128,6 @@ config rule
 	option proto		udp
 	option target		ACCEPT
 
-### FULL CONFIG SECTIONS
-#config rule
-#	option src		lan
-#	option src_ip	192.168.45.2
-#	option src_mac	00:11:22:33:44:55
-#	option src_port	80
-#	option dest		wan
-#	option dest_ip	194.25.2.129
-#	option dest_port	120
-#	option proto	tcp
-#	option target	REJECT
-
-#config redirect
-#	option src		lan
-#	option src_ip	192.168.45.2
-#	option src_mac	00:11:22:33:44:55
-#	option src_port		1024
-#	option src_dport	80
-#	option dest_ip	194.25.2.129
-#	option dest_port	120
-#	option proto	tcp
+# include a file with users custom iptables rules
+config include
+	option path /etc/firewall.user
