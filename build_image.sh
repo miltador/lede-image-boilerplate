@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script will download, configure and build an LEDE image using it's Image Builder
 
@@ -7,13 +7,15 @@
 # TODO list:
 #   1. Add variables.
 
-rm -r /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
-
 # Ask for a root password
 read -s -p "Enter your router's root pasword: " CLEAR_PASS
 
+echo ""
+
 # Ask for a Wi-Fi password
 read -s -p "Enter your own Wi-Fi password: " WIFI_PASS
+
+rm -r /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 
 # Download Image Builder
 wget -O /tmp/image-builder.tar.xz https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz
