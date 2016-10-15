@@ -10,10 +10,10 @@
 rm -r /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 
 # Download Image Builder
-wget -O /tmp/image-builder.tar.bz2 https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.bz2
+wget -O /tmp/image-builder.tar.xz https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz
 
 # Extract the archive
-tar -xf /tmp/image-builder.tar.bz2 -C /tmp/
+tar -xf /tmp/image-builder.tar.xz -C /tmp/
 
 cp -r files/ /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 
