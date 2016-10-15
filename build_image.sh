@@ -15,6 +15,8 @@ echo ""
 # Ask for a Wi-Fi password
 read -s -p "Enter your own Wi-Fi password: " WIFI_PASS
 
+echo ""
+
 rm -r /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 
 # Download Image Builder
