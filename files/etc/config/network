@@ -19,6 +19,8 @@ config interface 'lan'
 config interface 'wan'
 	option ifname 'eth1'
 	option proto 'dhcp'
+	option peerdns '0'
+	option dns '77.88.8.7 77.88.8.3'
 
 config interface 'wan6'
 	option ifname 'eth1'
