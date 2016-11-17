@@ -6,7 +6,7 @@
 
 # Image Builder settings
 PROFILE="tl-wr842n-v1"
-PACKAGES="kmod-sched-cake luci-ssl-openssl luci-app-upnp luci-app-sqm"
+PACKAGES="luci-ssl-openssl luci-app-upnp"
 FILES="gen_files/"
 
 chmod +x gen_configs.sh
