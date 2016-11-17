@@ -6,7 +6,7 @@
 
 # Image Builder settings
 PROFILE="tl-wr842n-v1"
-PACKAGES="luci-ssl-openssl luci-app-upnp"
+PACKAGES="luci-app-upnp luci-ssl-openssl"
 FILES="gen_files/"
 
 chmod +x gen_configs.sh
@@ -32,4 +32,4 @@ cd /tmp/lede-imagebuilder-ar71xx-generic.Linux-x86_64
 sudo apt-get install $BUILD_DEPS -y
 
 # Make image
-make image PROFILE=$PROFILE PACKAGES=$PACKAGES FILES=$FILES
+make image PROFILE=$PROFILE PACKAGES="$PACKAGES" FILES=$FILES
