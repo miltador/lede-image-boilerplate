@@ -14,11 +14,3 @@ config wifi-iface
 	option ssid		'Own Little Wi-Fi'
 	option encryption	psk2
 	option key		'OWN_WIFI_PASS_PLACEHOLDER'
-
-config wifi-iface
-    option device		radio0
-    option network		guest
-    option mode			ap
-    option ssid			'openwireless.org'
-    option encryption		none
-    option isolate		1
